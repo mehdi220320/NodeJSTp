@@ -14,11 +14,15 @@ app.put('/api/todos/update/:id',(req,res)=>{
     }
     else{
         obj=req.body
-        todos=todos.map((todo)=>{todo.id ===Number(id)?{...todo,...req.body}:todo})
+        todos= todos.map((todo)=>{todo.id ===Number(id)?{...todo,...req.body}:todo})
         res.send(todos)
     }
 })
-
+app.delete('/api/todos/delete/:id',(req,res)=>{
+    const id=Number(req.params.id);
+    todos=todos.filter(todo => todo.id!==id)
+    res.send(todos)
+})
 
 app.get('/',(req,res)=>{
     res.send({message:todos})
