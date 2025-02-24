@@ -42,4 +42,13 @@ router.put('/update/:id',async (req,res)=>
         res.status(400).send({error:error})
     }
 })
+router.delete('/delete/:id',async (req,res)=>
+{
+    try {
+        await  User.deleteOne(req.params.id)
+        res.status(200).send({message:"user deleted successfully"})
+    } catch (error){
+        res.status(400).send({error:error})
+    }
+})
 module.exports=router
